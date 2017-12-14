@@ -5,13 +5,11 @@ import org.vincibean.dt.Foo.FooBuilder
 
 object Implicits {
 
-  trait Dep[T <: HasBuilder[R], R <: Builder[T]] {
-    // def t: T
+  trait Dep[T, R] {
     def dep: R
   }
 
   implicit val fooDep = new Dep[Foo, FooBuilder] {
-    // val t = new Foo()
     val dep = new FooBuilder
   }
 
