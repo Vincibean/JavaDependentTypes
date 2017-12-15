@@ -14,7 +14,9 @@ object Main extends App {
   val ab = AddressBook.newBuilder().build()
   magicHappens[AddressBook, AddressBook.Builder](ab)(_.addPeople(0, p))
 
-  def magicHappens[T <: GeneratedMessageV3, R <: GeneratedMessageV3.Builder[_] { def build(): T }](t: T)(hook: R => R)(implicit ev: Aux[T, R]): Unit = {
+  def magicHappens[T <: GeneratedMessageV3,
+                   R <: GeneratedMessageV3.Builder[_] { def build(): T }](t: T)(
+      hook: R => R)(implicit ev: Aux[T, R]): Unit = {
     val res = hook(ev.dep(t)).build()
     println(res)
   }
