@@ -10,3 +10,9 @@ PB.targets in Compile := Seq(
 )
 
 scalafmtOnCompile := true
+
+lazy val compileScalastyle = taskKey[Unit]("compileScalastyle")
+
+compileScalastyle := scalastyle.in(Compile).toTask("").value
+
+(compile in Compile) := ((compile in Compile) dependsOn compileScalastyle).value
