@@ -1,6 +1,6 @@
 package org.vincibean.dt
 
-import com.example.tutorial.AddressBookProtos.Person
+import com.example.tutorial.AddressBookProtos.{AddressBook, Person}
 
 object Implicits {
 
@@ -10,6 +10,10 @@ object Implicits {
 
   implicit val personAux = new Aux[Person, Person.Builder] {
     def dep(p: Person): Person.Builder = Person.newBuilder()
+  }
+
+  implicit val addressBookAus = new Aux[AddressBook, AddressBook.Builder] {
+    def dep(ab: AddressBook): AddressBook.Builder = AddressBook.newBuilder()
   }
 
 }
