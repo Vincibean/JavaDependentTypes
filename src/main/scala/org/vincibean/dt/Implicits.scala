@@ -4,11 +4,11 @@ import com.example.tutorial.AddressBookProtos.Person
 
 object Implicits {
 
-  trait Dep[T, R] {
+  trait Aux[T, R] {
     def dep(t: T): R
   }
 
-  implicit val personDep = new Dep[Person, Person.Builder] {
+  implicit val personAux = new Aux[Person, Person.Builder] {
     def dep(p: Person): Person.Builder = Person.newBuilder()
   }
 
