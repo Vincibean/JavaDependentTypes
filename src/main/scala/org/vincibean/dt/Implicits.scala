@@ -1,22 +1,19 @@
 package org.vincibean.dt
 
-import org.vincibean.dt.Bar.BarBuilder
-import org.vincibean.dt.Foo.FooBuilder
+import com.example.tutorial.AddressBookProtos.{AddressBook, Person}
 
 object Implicits {
 
-  trait Dep[T <: HasBuilder[R], R <: Builder[T]] {
-    // def t: T
-    def dep: R
+  trait Aux[T, R] {
+    def dep(t: T): R
   }
 
-  implicit val fooDep = new Dep[Foo, FooBuilder] {
-    // val t = new Foo()
-    val dep = new FooBuilder
+  implicit val personAux = new Aux[Person, Person.Builder] {
+    def dep(p: Person): Person.Builder = Person.newBuilder()
   }
 
-  implicit val barDep = new Dep[Bar, BarBuilder] {
-    val dep = new BarBuilder
+  implicit val addressBookAus = new Aux[AddressBook, AddressBook.Builder] {
+    def dep(ab: AddressBook): AddressBook.Builder = AddressBook.newBuilder()
   }
 
 }
