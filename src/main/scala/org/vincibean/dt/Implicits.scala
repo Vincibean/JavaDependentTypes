@@ -12,7 +12,7 @@ object Implicits {
     def dep(p: Person): Person.Builder = Person.newBuilder()
   }
 
-  implicit val addressBookAus = new Aux[AddressBook, AddressBook.Builder] {
+  implicit val addressBookAux = new Aux[AddressBook, AddressBook.Builder] {
     def dep(ab: AddressBook): AddressBook.Builder = AddressBook.newBuilder()
   }
 
