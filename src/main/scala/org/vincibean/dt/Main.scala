@@ -17,7 +17,7 @@ object Main extends App {
   def magicHappens[T <: GeneratedMessageV3,
                    R <: GeneratedMessageV3.Builder[_] { def build(): T }](t: T)(
       hook: R => R)(implicit ev: Aux[T, R]): Unit = {
-    val res = hook(ev.dep(t)).build()
+    val res = hook(ev.dep).build()
     println(res)
   }
 
